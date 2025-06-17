@@ -46,7 +46,7 @@ class _HorizontalButtonRowState extends State<HorizontalButtonRow> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: _selectedIndex == index ? Colors.white : Colors.black, backgroundColor: _selectedIndex == index ? orange : lightgrey, // Text color
+                  foregroundColor: _selectedIndex == index ? lightgrey2 : Colors.black, backgroundColor: _selectedIndex == index ? orange : lightgrey, // Text color
                 ),
                 child: Text(index == 0 ? 'All Alerts' :
                              index == 1 ? 'High Priority' :

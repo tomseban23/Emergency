@@ -5,7 +5,7 @@ import 'package:notifi_emp/consts/consts.dart';
 import 'package:notifi_emp/consts/providers.dart';
 import 'dart:convert';
 
-import 'package:notifi_emp/screens/notif_req.dart';
+import 'package:notifi_emp/admin_section/screens/notif_req.dart';
 import 'package:provider/provider.dart';
 
 class Setup extends StatefulWidget {

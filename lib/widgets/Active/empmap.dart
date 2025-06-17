@@ -19,7 +19,7 @@ class EmployeeMapWidget extends StatelessWidget {
           // This is a placeholder for an actual map
           // In a real app, you would use a package like google_maps_flutter
           Image.asset(
-            'assets/map_placeholder.png', // You'll need to provide a placeholder image
+            'assets/map.jpg', // You'll need to provide a placeholder image
             fit: BoxFit.cover,
             width: double.infinity,
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notifi_emp/consts/consts.dart';
 
 
 
@@ -8,7 +9,7 @@ class AnalyticsDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: lightgrey,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
@@ -139,7 +140,7 @@ class StatsSection extends StatelessWidget {
         Text(
           value,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             color: valueColor,
           ),

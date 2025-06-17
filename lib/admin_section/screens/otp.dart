@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:notifi_emp/consts/consts.dart';
 import 'package:notifi_emp/consts/providers.dart';
-import 'package:notifi_emp/screens/setup.dart';
+import 'package:notifi_emp/admin_section/screens/setup.dart';
 import 'package:provider/provider.dart';
 
 

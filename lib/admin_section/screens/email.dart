@@ -6,7 +6,7 @@ import 'package:notifi_emp/consts/consts.dart';
 import 'package:notifi_emp/consts/providers.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart'; 
-import 'package:notifi_emp/screens/otp.dart';
+import 'package:notifi_emp/admin_section/screens/otp.dart';
 
 class Email extends StatefulWidget {
  // final String businessName;
@@ -224,24 +224,19 @@ void _submitData() async {
   // Store the email using the provider
   Provider.of<BusinessProvider>(context, listen: false).setEmail(email);
 
-  final response = await http.post(
-    Uri.parse('$BaseUrl/organizations/sendOtp'), // Replace with your actual API endpoint
+  final response = await http.get(
+    Uri.parse('$BaseUrl/organizations/check-org-email?email_domain=$email'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-      'email': email,
-    }),
   );
 
-  // Print the response
   print('Response status code: ${response.statusCode}');
   print('Response body: ${response.body}');
 
   if (response.statusCode >= 200 && response.statusCode <= 300) {
-    // Show success message with response body
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Center(child: Text('Data submitted successfully'))),
+      SnackBar(content: Text('Data submitted successfully')),
     );
 
     Navigator.push(
@@ -249,12 +244,24 @@ void _submitData() async {
       MaterialPageRoute(builder: (context) => OtpVerificationPage()),
     );
   } else {
-    // Show error message with response body
+    // Try to parse error message from response body
+    String errorMessage = 'Failed to submit data';
+    try {
+      final responseData = jsonDecode(response.body);
+      if (responseData['message'] != null) {
+        errorMessage = responseData['message'];
+      }
+    } catch (e) {
+      // If response is not JSON, keep default error message
+      print('Error parsing response: $e');
+    }
+
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Failed to submit data. Response: ${response.body}')),
+      SnackBar(content: Text(errorMessage)),
     );
   }
 }
+
 
 
 }

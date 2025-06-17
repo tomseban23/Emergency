@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:notifi_emp/consts/consts.dart';
 import 'package:notifi_emp/consts/providers.dart';
 import 'dart:convert';
-import 'package:notifi_emp/screens/email.dart';
-import 'package:notifi_emp/screens/signin.dart';
+import 'package:notifi_emp/admin_section/screens/email.dart';
+import 'package:notifi_emp/admin_section/screens/signin.dart';
 import 'package:provider/provider.dart';
 
 class BusinessName extends StatefulWidget {
@@ -40,16 +40,28 @@ class _BusinessNameState extends State<BusinessName> {
       _isLoading = true;
     });
 
-    try {
-      final url = Uri.parse('$BaseUrl/organizations/checkBusinessName');
+    // try {
+    //   final url = Uri.parse('$BaseUrl/organizations/checkBusinessName');
+    //   print('Sending request to: $url');
+
+    //   final response = await http.post(
+    //     url,
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: jsonEncode({'businessName': businessName}),
+    //   );
+
+     try {
+      final url = Uri.parse('$BaseUrl/organizations/check-org-name?business_name=$businessName');
       print('Sending request to: $url');
 
-      final response = await http.post(
+      final response = await http.get(
         url,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: jsonEncode({'businessName': businessName}),
+       // body: jsonEncode({'businessName': businessName}),
       );
 
       print('Response status code: ${response.statusCode}');
@@ -156,11 +168,13 @@ class _BusinessNameState extends State<BusinessName> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: DropdownButtonFormField<String>(
+                      dropdownColor: Colors.white,
                       value: _selectedIndustry,
                       hint: Text('Select Industry Type', 
                              style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                       items: _industries
                           .map((industry) => DropdownMenuItem<String>(
+                            
                                 value: industry,
                                 child: Text(industry),
                               ))

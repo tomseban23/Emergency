@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notifi_emp/screens/dashboard.dart';
+import 'package:notifi_emp/admin_section/screens/dashboard.dart';
 
 class AllowNotificationsScreen extends StatefulWidget {
   @override
